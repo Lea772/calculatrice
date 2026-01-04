@@ -14,43 +14,65 @@ function Touch({ value, onClick, className }) {
 
 function App() {
   const [value, setValue] = useState("")
+  const [statueResult , setResult] = useState(false)
 
-  const gererClick = (symbol) => {
-    if (["+","-","*","/"].includes(value.slice(-1)) && ["+","-","*","/"].includes(symbol)) {
+    const gererClick = (symbol) => {
+    if (["+", "-", "*", "/"].includes(value.slice(-1)) && ["+", "-", "*", "/"].includes(symbol)) {
       return;
     }
+
+    if (statueResult) {
+      setResult(false);
+      if(!["+", "-", "*", "/", "=", "AC", "DE"].includes(symbol)) {
+        setValue(symbol);
+        return;
+      }
+    }
+
     switch (symbol) {
       case "=":
         try {
-          setValue(eval(value).toString())
+          setValue(eval(value).toString());
         } catch (error) {
-          setValue("Le calcul n'est pas valide")
+          setValue("Erreur");
         }
+        setResult(true);
         break;
+
       case "AC":
-        setValue("")
+        setValue("");
         break;
+
       case "DE":
-        setValue(value.toString().slice(0, -1))
-        break;
-      case "+" || "-" || "*" || "/":
-        setValue(value + symbol)
-        break;
-      default:
-        setValue(value + symbol)
+        setValue(value.toString().slice(0, -1));
         break;
 
+
+        default:
+        if (value === "0" && symbol !== "." && symbol !== "00") {
+          setValue(symbol);
+          break;
+        }
+        if (value === "" && (symbol === "00" || symbol === ".")) {
+          break;
+        }
+        if (["+", "-", "*", "/"].includes(value.slice(-1)) && symbol === ".") {
+          break;
+        }
+        setValue(value + symbol);
+        break;
     }
-
-  }
+  };
 
   return (
     <div className="container">
+      <h1>Calculatrice Simple</h1>
       <div className="calculatrice">
         <form action="">
           <div className="resultat">
-            <input type="text" value={value}/>
+            <input type="text" value={value} />
           </div>
+          <div className="clavier">
           <div className="touches">
             <Touch value={"AC"} onClick={gererClick}/>
             <Touch value={"DE"} onClick={gererClick}/>
@@ -80,11 +102,12 @@ function App() {
             <Touch value={"00"} onClick={gererClick}/>
             <Touch value={"="} onClick={gererClick} className="egal"/>
           </div>
-
+          </div>
         </form>
       </div>
     </div>
   )
 }
+
 
 export default App

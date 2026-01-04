@@ -4,22 +4,33 @@ body{
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+h1{
+    color: white;
 }
 
 .calculatrice{
     box-shadow: 9px 12px 0px 0px rgba(0, 0, 0, 0.75);
     width: 367px;
     height: auto;
-    background-color: rgb(0, 0, 0);
+    background: #fdfdfd;
+    border-radius: 10px;
+}
+
+.clavier{
+    width: auto;
+    height: 100%;
+    background: #805981;
     padding: 20px 10px 10px 10px;
     border-radius: 10px;
 }
 
 .resultat{
-    width: 100%;
+    width: 359px;
 }
 .resultat input{
     width: 100%;
@@ -27,14 +38,13 @@ body{
     border-radius: 10px;
     border: none;
     text-align: right;
-    font-size: 24px;
+    font-size: 38px;
     margin-bottom: 10px;
+    padding: 1px 4px;
+    pointer-events: none;
 }
 
-.touches{
-    width: 100%;
-    height: 100%;
-}
+
 
 .touches{
     display: grid;
@@ -45,12 +55,13 @@ body{
 
 .touches input{
     width: 100%;
-    height: 60px; /* On donne une hauteur aux boutons */
+    height: 60px;
     border-radius: 10px;
     border: none;
     background-color: #3a3a3a;
     color: white;
     font-size: 20px;
+    box-shadow: 4px 5px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
 .egal {
