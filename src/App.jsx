@@ -49,21 +49,23 @@ function App() {
 
 
         default:
-        if (value === "0" && symbol !== "." && symbol !== "00") {
-          setValue(symbol);
+          if (value === "" && (symbol === "00" || symbol === ".")) {
+            return;
+          }
+          if (value === "0") {
+            if (symbol === "00" || symbol === "0") return; 
+            
+            if (symbol !== ".") {
+              setValue(symbol); 
+              return;
+            }
+          }
+          if (["+", "-", "*", "/"].includes(value.slice(-1)) && symbol === ".") {
+            return;
+          }
+
+          setValue(value + symbol);
           break;
-        }
-        if (value === "0" && symbol === "00"){
-          break;
-        }
-        if (value === "" (symbol === "00" || symbol === ".")) {
-          break;
-        }
-        if (["+", "-", "*", "/"].includes(value.slice(-1)) && symbol === ".") {
-          break;
-        }
-        setValue(value + symbol);
-        break;
     }
   };
 
