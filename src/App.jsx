@@ -53,7 +53,10 @@ function App() {
           setValue(symbol);
           break;
         }
-        if (value === "" && (symbol === "00" || symbol === ".")) {
+        if (value === "0" && symbol === "00") {
+          break;
+        }
+        if (value === "" (symbol === "00" || symbol === ".")) {
           break;
         }
         if (["+", "-", "*", "/"].includes(value.slice(-1)) && symbol === ".") {
