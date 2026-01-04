@@ -53,7 +53,7 @@ function App() {
           setValue(symbol);
           break;
         }
-        if (value === "0" && symbol === "00") {
+        if (value === "0" && symbol === "00"){
           break;
         }
         if (value === "" (symbol === "00" || symbol === ".")) {
